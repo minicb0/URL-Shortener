@@ -1,0 +1,2 @@
+PORT=3000
+DATABASE=mongodb+srv://<username>:<password>@cluster0.yvupi.mongodb.net/urlShortener?retryWrites=true&w=majority

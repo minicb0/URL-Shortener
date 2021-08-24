@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener - Stats</title>
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div id="heading">
+        <h1>URL Shortener - Stats</h1>
+    </div>
+    <div id="wrapper">
+        <div>
+            <div id="messageDiv">
+                <div id="message">
+                    <% if (message != '') { %>
+                        <%= message %>
+                    <% } %>
+                </div>
+            </div>
+            <div class="form-container">
+                <h2></h2>
+                <ul class="stats">
+                    <li><strong>Full URL - </strong><a href="<%= url.fullURL %>"><%= url.fullURL %></a></li>
+                    <li>
+                        <strong>Short URL - </strong>
+                        <a href="http://localhost:3000/<%= url.shortURL %>">http://localhost:3000/<%= url.shortURL %></a>
+                        <i class="fas fa-edit edit" id="edit"></i>
+                        <div class="hide" id="editInput">
+                            <form action="/custom/url/<%= url.shortURL %>" method="POST">
+                                <input type="text" name="customURL" value="<%= url.shortURL %>" placeholder="Custom URL" autocomplete="off" required>
+                                <button type="submit" style="width: 100%;">Set this as the new custom URL</button>
+                            </form>
+                        </div>
+                    </li>
+                    <li><strong>No. Of Clicks - </strong><%= url.clicks %></li>
+                    <li><strong>URL Created At - </strong><%= url.createdOn %></li>
+                    <li><strong>URL Last Accessed At - </strong><%= url.lastAccessed %></li>
+                    <li><strong>Location Access -</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="/public/js/customURL.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/public/css/index.css">
+</head>
+
+<body>
+    <div id="heading">
+        <h1>URL Shortener</h1>
+    </div>
+    <div id="wrapper">
+        <div>
+            <div class="form-container">
+                <h2>Paste the URL to be shortened</h2>
+                <form action="/createURL" method="POST">
+                    <div id="inputButtonDiv">
+                        <input type="url" name="fullURL" id="fullURL" autocomplete="off" placeholder="Place your URL here (https://example.com)" required>
+                        <button type="submit">Short</button>
+                    </div>
+                </form>
+            </div>
+            <div class="form-container" style="margin-top: 100px;">
+                <h2>Paste the unique ID of the short URL to check its stats</h2>
+                <form action="/stats" method="GET">
+                    <div id="inputButtonDiv">
+                        <input type="text" name="id" id="id" autocomplete="off" placeholder="Place the unique ID here (bGhTym)" required>
+                        <button type="submit">Stats</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
