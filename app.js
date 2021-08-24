@@ -63,7 +63,11 @@ app.get('/stats', async (req, res) => {
     try {
         const id = req.query.id
         const url = await Url.findOne({ shortURL: id })
-        res.render('stats', {  url, message: req.flash('message') })
+        if (url == null) {
+            res.render('404')
+        } else {
+            res.render('stats', {  url, message: req.flash('message') })
+        }
     } catch (err) {
         console.log(err)
     }
