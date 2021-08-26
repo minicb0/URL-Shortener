@@ -3,7 +3,7 @@ const app = express();
 const dotenv = require('dotenv');
 const flash = require("connect-flash");
 const session = require("express-session");
-
+const fetch = require('node-fetch');
 const Url = require("./models/urlSchema")
 
 // setting view engine
@@ -79,6 +79,32 @@ app.get('/:id', async (req, res) => {
         if(url == null) {
             res.render('404')
         } else {
+            // geting client's IP
+            var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+            // console.log(ip);
+            if (ip == '::1') { //local host ip address
+                ip = '157.38.248.184' // asia ip address example
+                // ip = '23.235.60.92' // north america ip address example
+            }
+            var responseAPI = await fetch(`http://ip-api.com/json/${ip}?fields=continent`)
+            var continent = await responseAPI.json();
+            continent = continent.continent
+            // console.log(continent)
+            // console.log(url.continents)
+            var counted = false;
+            for (let i = 0; i < url.continents.length; i++) {
+                if (url.continents[i].continentName == continent) {
+                    url.continents[i].count++
+                    counted = true;
+                }
+            }
+            if (counted == false) {
+                url.continents.push({
+                    continentName: continent,
+                    count: 1
+                })
+            }
+            // console.log(url.continents)
             url.clicks ++
             url.lastAccessed = new Date();
             await url.save()

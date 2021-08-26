@@ -41,7 +41,16 @@
                     <li><strong>No. Of Clicks - </strong><%= url.clicks %></li>
                     <li><strong>URL Created At - </strong><%= url.createdOn %></li>
                     <li><strong>URL Last Accessed At - </strong><%= url.lastAccessed %></li>
-                    <li><strong>Location Access -</strong></li>
+                    <li>
+                        <strong>Location Access -</strong>
+                        <ul id="locationList">
+                            <% for (let i = 0; i < url.continents.length; i++) { %>
+                                <li>
+                                    <strong><%= url.continents[i].continentName %> - </strong><%= url.continents[i].count %>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

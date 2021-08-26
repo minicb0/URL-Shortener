@@ -21,7 +21,11 @@ const urlSchema = new mongoose.Schema({
     lastAccessed: {
         type: Date,
         expires: 2*24*60*60
-    }
+    },
+    continents: [{
+        continentName: String,
+        count: Number
+    }]
 })
 
 const Url = mongoose.model('URL', urlSchema);

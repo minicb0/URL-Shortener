@@ -121,6 +121,15 @@ h2 {
     cursor: pointer;
 }
 
+#locationList li {
+    margin: 10px;
+    background-color: rgb(7, 194, 194);
+    color: #146669;
+    padding: 10px;
+    border-radius: 5px;
+    list-style: none;
+}
+
 .hide {
     display: none;
 }
